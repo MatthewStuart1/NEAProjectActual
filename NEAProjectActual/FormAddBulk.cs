@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace NEAProjectActual
 {
     public partial class FormAddBulk : Form
@@ -17,8 +18,22 @@ namespace NEAProjectActual
             InitializeComponent();
         }
 
-        private void FormBulkAdd_Load(object sender, EventArgs e)
+
+
+        private void FormAddBulk_Load(object sender, EventArgs e)
         {
+
+        }
+
+        OpenFileDialog ofd = new OpenFileDialog();
+
+        private void btnAddBulk_Click(object sender, EventArgs e)
+        {
+            ofd.Filter = "CSV |*.CSV";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+            } 
 
         }
     }

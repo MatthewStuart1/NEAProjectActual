@@ -31,6 +31,7 @@
             mapControl1 = new GMap.NET.WindowsForms.GMapControl();
             btnAddNew = new Button();
             btnAddBulk = new Button();
+            lstTrackedAircraft = new ListView();
             SuspendLayout();
             // 
             // mapControl1
@@ -73,17 +74,26 @@
             // 
             btnAddBulk.Location = new Point(135, 383);
             btnAddBulk.Name = "btnAddBulk";
-            btnAddBulk.Size = new Size(110, 23);
+            btnAddBulk.Size = new Size(127, 23);
             btnAddBulk.TabIndex = 2;
             btnAddBulk.Text = "Track New Bulk (CSV)";
             btnAddBulk.UseVisualStyleBackColor = true;
-            btnAddBulk.Click += this.btnAddBulk_Click;
+            btnAddBulk.Click += btnAddBulk_Click;
+            // 
+            // lstTrackedAircraft
+            // 
+            lstTrackedAircraft.Location = new Point(1, 0);
+            lstTrackedAircraft.Name = "lstTrackedAircraft";
+            lstTrackedAircraft.Size = new Size(392, 363);
+            lstTrackedAircraft.TabIndex = 3;
+            lstTrackedAircraft.UseCompatibleStateImageBehavior = false;
             // 
             // FormHome
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lstTrackedAircraft);
             Controls.Add(btnAddBulk);
             Controls.Add(btnAddNew);
             Controls.Add(mapControl1);
@@ -98,5 +108,6 @@
         private GMap.NET.WindowsForms.GMapControl mapControl1;
         private Button btnAddNew;
         private Button btnAddBulk;
+        private ListView lstTrackedAircraft;
     }
 }

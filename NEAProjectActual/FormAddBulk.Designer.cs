@@ -28,19 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnAddBulk = new Button();
+            lblCSVOnly = new Label();
             SuspendLayout();
             // 
-            // FormBulkAdd
+            // btnAddBulk
+            // 
+            btnAddBulk.Location = new Point(115, 60);
+            btnAddBulk.Name = "btnAddBulk";
+            btnAddBulk.Size = new Size(75, 23);
+            btnAddBulk.TabIndex = 0;
+            btnAddBulk.Text = "Browse Files";
+            btnAddBulk.UseVisualStyleBackColor = true;
+            btnAddBulk.Click += btnAddBulk_Click;
+            // 
+            // lblCSVOnly
+            // 
+            lblCSVOnly.AutoSize = true;
+            lblCSVOnly.Location = new Point(21, 9);
+            lblCSVOnly.Name = "lblCSVOnly";
+            lblCSVOnly.Size = new Size(268, 15);
+            lblCSVOnly.TabIndex = 1;
+            lblCSVOnly.Text = "Only Accepts Comma Separated Value files (.CSV)";
+            // 
+            // FormAddBulk
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "FormBulkAdd";
-            Text = "FormBulkAdd";
-            Load += FormBulkAdd_Load;
+            ClientSize = new Size(320, 169);
+            Controls.Add(lblCSVOnly);
+            Controls.Add(btnAddBulk);
+            Name = "FormAddBulk";
+            Text = "FormAddBulk";
+            Load += FormAddBulk_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button btnAddBulk;
+        private Label lblCSVOnly;
     }
 }
