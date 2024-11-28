@@ -28,12 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            mapControl1 = new GMap.NET.WindowsForms.GMapControl();
+            btnAddNew = new Button();
+            SuspendLayout();
+            // 
+            // mapControl1
+            // 
+            mapControl1.Bearing = 0F;
+            mapControl1.CanDragMap = true;
+            mapControl1.EmptyTileColor = Color.Navy;
+            mapControl1.GrayScaleMode = false;
+            mapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            mapControl1.LevelsKeepInMemory = 5;
+            mapControl1.Location = new Point(399, -1);
+            mapControl1.MarkersEnabled = true;
+            mapControl1.MaxZoom = 2;
+            mapControl1.MinZoom = 2;
+            mapControl1.MouseWheelZoomEnabled = true;
+            mapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            mapControl1.Name = "mapControl1";
+            mapControl1.NegativeMode = false;
+            mapControl1.PolygonsEnabled = true;
+            mapControl1.RetryLoadTile = 0;
+            mapControl1.RoutesEnabled = true;
+            mapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            mapControl1.SelectedAreaFillColor = Color.FromArgb(33, 65, 105, 225);
+            mapControl1.ShowTileGridLines = false;
+            mapControl1.Size = new Size(401, 452);
+            mapControl1.TabIndex = 0;
+            mapControl1.Zoom = 0D;
+            // 
+            // btnAddNew
+            // 
+            btnAddNew.Location = new Point(6, 383);
+            btnAddNew.Name = "btnAddNew";
+            btnAddNew.Size = new Size(112, 23);
+            btnAddNew.TabIndex = 1;
+            btnAddNew.Text = "Track New Aircraft";
+            btnAddNew.UseVisualStyleBackColor = true;
+            btnAddNew.Click += btnAddNew_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnAddNew);
+            Controls.Add(mapControl1);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private GMap.NET.WindowsForms.GMapControl mapControl1;
+        private Button btnAddNew;
     }
 }
