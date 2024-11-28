@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             lblAddNewInstructions = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // lblAddNewInstructions
@@ -40,11 +41,19 @@
             lblAddNewInstructions.TabIndex = 0;
             lblAddNewInstructions.Text = "Enter a Registration (Excluding G-)";
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(251, 23);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 1;
+            // 
             // frmAddNew
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox1);
             Controls.Add(lblAddNewInstructions);
             Name = "frmAddNew";
             Text = "frmAddNew";
@@ -55,5 +64,6 @@
         #endregion
 
         private Label lblAddNewInstructions;
+        private TextBox textBox1;
     }
 }
