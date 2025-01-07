@@ -7,57 +7,44 @@ namespace NEAProjectActual
     public partial class FormHome : Form
     {
         OleDbConnection conn = new OleDbConnection();
-        string dbProvider = "Provider=Microsoft.ACE.OLEDB.12.0;";
-        string dbSource = @"Data Source=your_database_path\ADSBDatabase.accdb";
         public FormHome()
         {
             InitializeComponent();
-
         }
 
-        private void ListView()
+        public void ListView()
         {
             try
             {
-                conn.Open();
-                string sql = "SELECT * FROM Aircraft";
-
-                //do the sql
-                OleDbCommand cmd = new OleDbCommand(sql, conn);
-                OleDbDataReader reader = cmd.ExecuteReader();
-
-                // no duplicates allowed
+                clsDBConnector dbConnector = new clsDBConnector();
+                OleDbDataReader dr;
+                string sqlStr;
+                dbConnector.Connect();
+                sqlStr = "SELECT icaoAddress, registration, type, airline FROM Aircraft";
+                dr = dbConnector.DoSQL(sqlStr);
                 lstTrackedAircraft.Items.Clear();
-
-
-                while (reader.Read())
+                while (dr.Read())
                 {
-                    ListViewItem item = new ListViewItem(reader["icaoAddress"].ToString());
-
-                    item.SubItems.Add(reader["registration"].ToString());
-                    item.SubItems.Add(reader["type"].ToString());
-                    item.SubItems.Add(reader["irline"].ToString());
-                    lstTrackedAircraft.Items.Add(item);
-
+                    lstTrackedAircraft.Items.Add(dr[0].ToString());
+                    lstTrackedAircraft.Items[lstTrackedAircraft.Items.Count - 1].SubItems.Add(dr[1].ToString());
+                    lstTrackedAircraft.Items[lstTrackedAircraft.Items.Count - 1].SubItems.Add(dr[2].ToString());
+                    lstTrackedAircraft.Items[lstTrackedAircraft.Items.Count - 1].SubItems.Add(dr[3].ToString());
                 }
-                reader.Close();
+                dbConnector.Close();
             }
-            catch (Exception ex)
+            catch (Exception except)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + except.Message);
             }
             finally
             {
                 conn.Close();
             }
-
-
-
         }
         private void ConfigMap()
         {
             mapControl1.MapProvider = GMapProviders.GoogleSatelliteMap;
-            //Sets map used to Google Maps
+            //sets map used to Google Maps
 
             mapControl1.ShowCenter = false;
             //removes stupid red cross
@@ -80,8 +67,8 @@ namespace NEAProjectActual
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ConfigMap();
             ListView();
+            ConfigMap();
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -100,5 +87,10 @@ namespace NEAProjectActual
             //SQL to add a new aircraft to the tracked database
         }
 
+        private void btnNewPilot_Click(object sender, EventArgs e)
+        {
+            FormAddPilot formAddPilot = new FormAddPilot();
+            formAddPilot.Show();
+        }
     }
 }

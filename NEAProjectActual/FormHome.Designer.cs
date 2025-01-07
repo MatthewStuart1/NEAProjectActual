@@ -32,6 +32,11 @@
             btnAddNew = new Button();
             btnAddBulk = new Button();
             lstTrackedAircraft = new ListView();
+            icaoAddress = new ColumnHeader();
+            registration = new ColumnHeader();
+            type = new ColumnHeader();
+            airline = new ColumnHeader();
+            btnNewPilot = new Button();
             SuspendLayout();
             // 
             // mapControl1
@@ -42,7 +47,7 @@
             mapControl1.GrayScaleMode = false;
             mapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             mapControl1.LevelsKeepInMemory = 5;
-            mapControl1.Location = new Point(399, -1);
+            mapControl1.Location = new Point(6, 1);
             mapControl1.MarkersEnabled = true;
             mapControl1.MaxZoom = 2;
             mapControl1.MinZoom = 2;
@@ -56,13 +61,13 @@
             mapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             mapControl1.SelectedAreaFillColor = Color.FromArgb(33, 65, 105, 225);
             mapControl1.ShowTileGridLines = false;
-            mapControl1.Size = new Size(401, 452);
+            mapControl1.Size = new Size(509, 643);
             mapControl1.TabIndex = 0;
             mapControl1.Zoom = 0D;
             // 
             // btnAddNew
             // 
-            btnAddNew.Location = new Point(6, 383);
+            btnAddNew.Location = new Point(536, 41);
             btnAddNew.Name = "btnAddNew";
             btnAddNew.Size = new Size(112, 23);
             btnAddNew.TabIndex = 1;
@@ -72,7 +77,7 @@
             // 
             // btnAddBulk
             // 
-            btnAddBulk.Location = new Point(135, 383);
+            btnAddBulk.Location = new Point(536, 70);
             btnAddBulk.Name = "btnAddBulk";
             btnAddBulk.Size = new Size(127, 23);
             btnAddBulk.TabIndex = 2;
@@ -82,17 +87,46 @@
             // 
             // lstTrackedAircraft
             // 
-            lstTrackedAircraft.Location = new Point(1, 0);
+            lstTrackedAircraft.Columns.AddRange(new ColumnHeader[] { icaoAddress, registration, type, airline });
+            lstTrackedAircraft.Location = new Point(699, 12);
             lstTrackedAircraft.Name = "lstTrackedAircraft";
-            lstTrackedAircraft.Size = new Size(392, 363);
+            lstTrackedAircraft.Size = new Size(392, 619);
             lstTrackedAircraft.TabIndex = 3;
             lstTrackedAircraft.UseCompatibleStateImageBehavior = false;
+            lstTrackedAircraft.View = View.Details;
+            // 
+            // icaoAddress
+            // 
+            icaoAddress.Text = "ICAO Address";
+            // 
+            // registration
+            // 
+            registration.Text = "Reg";
+            // 
+            // type
+            // 
+            type.Text = "Type";
+            // 
+            // airline
+            // 
+            airline.Text = "Airline";
+            // 
+            // btnNewPilot
+            // 
+            btnNewPilot.Location = new Point(536, 12);
+            btnNewPilot.Name = "btnNewPilot";
+            btnNewPilot.Size = new Size(137, 23);
+            btnNewPilot.TabIndex = 4;
+            btnNewPilot.Text = "Add New Pilot/Student";
+            btnNewPilot.UseVisualStyleBackColor = true;
+            btnNewPilot.Click += btnNewPilot_Click;
             // 
             // FormHome
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1103, 643);
+            Controls.Add(btnNewPilot);
             Controls.Add(lstTrackedAircraft);
             Controls.Add(btnAddBulk);
             Controls.Add(btnAddNew);
@@ -109,5 +143,10 @@
         private Button btnAddNew;
         private Button btnAddBulk;
         private ListView lstTrackedAircraft;
+        private Button btnNewPilot;
+        private ColumnHeader icaoAddress;
+        private ColumnHeader registration;
+        private ColumnHeader type;
+        private ColumnHeader airline;
     }
 }

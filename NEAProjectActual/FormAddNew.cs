@@ -30,7 +30,9 @@ namespace NEAProjectActual
 
             FormHome.AddNewAircraft();
 
+
             MessageBox.Show($"new registration {newReg} added");
+
         }
 
     }

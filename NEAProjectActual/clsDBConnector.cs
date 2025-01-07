@@ -1,47 +1,41 @@
-﻿using System;
+﻿
 using System.Data.OleDb;
+using System;
 
 namespace NEAProjectActual
 {
-    public class clsDBConnector
+    class clsDBConnector
     {
-        private OleDbConnection conn;
-        private string dbProvider;
-        private string dbSource;
+        OleDbConnection conn = new OleDbConnection();
+        string dbProvider = "";
+        string dbSource = "";
+        string workingDirectory = Environment.CurrentDirectory;
 
-        public clsDBConnector()
+        public void Connect()
         {
             dbProvider = "Provider=Microsoft.ACE.OLEDB.12.0;";
-            dbSource = @"Data Source=" + Environment.CurrentDirectory + @"\ADSBDatabase.accdb";
-            conn = new OleDbConnection(dbProvider + dbSource);
+            dbSource = @"Data Source = " + workingDirectory + @"\ADSBDatabase.accdb";
+            conn.ConnectionString = dbProvider + dbSource;
+            conn.Open();
         }
 
-        public OleDbConnection GetConnection()
+        public void Close()
         {
-            return conn;
+            conn.Close();
         }
 
-        public void OpenConnection()
+        public void DoDML(string dmlString)
         {
-            try
-            {
-                if (conn.State != System.Data.ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error opening database connection: " + ex.Message);
-            }
+            OleDbCommand cmd;
+            cmd = new OleDbCommand(dmlString, conn);
+            cmd.ExecuteNonQuery();
         }
 
-        public void CloseConnection()
+        public OleDbDataReader DoSQL(string sqlString)
         {
-            if (conn.State == System.Data.ConnectionState.Open)
-            {
-                conn.Close();
-            }
+            OleDbCommand cmd;
+            cmd = new OleDbCommand(sqlString, conn);
+            return cmd.ExecuteReader();
         }
     }
 }
