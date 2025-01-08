@@ -82,7 +82,6 @@
             txtSurname.Size = new Size(65, 15);
             txtSurname.TabIndex = 6;
             txtSurname.Text = "Sur Name :";
-            txtSurname.Click += label2_Click;
             // 
             // label3
             // 
@@ -110,7 +109,6 @@
             chkME.TabIndex = 10;
             chkME.Text = "checkBox1";
             chkME.UseVisualStyleBackColor = true;
-            chkME.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // lblME
             // 

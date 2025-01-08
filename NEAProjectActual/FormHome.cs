@@ -1,7 +1,6 @@
 using GMap.NET.MapProviders;
 using System.Data.OleDb;
 
-
 namespace NEAProjectActual
 {
     public partial class FormHome : Form
@@ -10,6 +9,7 @@ namespace NEAProjectActual
         public FormHome()
         {
             InitializeComponent();
+            lstTrackedAircraft.ItemActivate += listViewPlanes_ItemActivate;
         }
 
         public void ListView()
@@ -25,10 +25,11 @@ namespace NEAProjectActual
                 lstTrackedAircraft.Items.Clear();
                 while (dr.Read())
                 {
-                    lstTrackedAircraft.Items.Add(dr[0].ToString());
-                    lstTrackedAircraft.Items[lstTrackedAircraft.Items.Count - 1].SubItems.Add(dr[1].ToString());
-                    lstTrackedAircraft.Items[lstTrackedAircraft.Items.Count - 1].SubItems.Add(dr[2].ToString());
-                    lstTrackedAircraft.Items[lstTrackedAircraft.Items.Count - 1].SubItems.Add(dr[3].ToString());
+                    var item = new ListViewItem(dr[0].ToString());
+                    item.SubItems.Add(dr[1].ToString());
+                    item.SubItems.Add(dr[2].ToString());
+                    item.SubItems.Add(dr[3].ToString());
+                    lstTrackedAircraft.Items.Add(item);
                 }
                 dbConnector.Close();
             }
@@ -41,28 +42,16 @@ namespace NEAProjectActual
                 conn.Close();
             }
         }
+
         private void ConfigMap()
         {
             mapControl1.MapProvider = GMapProviders.GoogleSatelliteMap;
-            //sets map used to Google Maps
-
             mapControl1.ShowCenter = false;
-            //removes stupid red cross
-
             mapControl1.Overlays.Clear();
-            //clears map of icons
-
             mapControl1.Position = new GMap.NET.PointLatLng(46.218386, 6.133021);
-            //default position for map
-
             mapControl1.MinZoom = 0;
-            //min zoom
-
             mapControl1.MaxZoom = 24;
-            //max zoom
-
             mapControl1.Zoom = 12;
-            //default zoom
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -76,6 +65,7 @@ namespace NEAProjectActual
             FormAddNew formAddNew = new FormAddNew();
             formAddNew.Show();
         }
+
         private void btnAddBulk_Click(object sender, EventArgs e)
         {
             FormAddBulk formAddBulk = new FormAddBulk();
@@ -84,7 +74,7 @@ namespace NEAProjectActual
 
         public static void AddNewAircraft()
         {
-            //SQL to add a new aircraft to the tracked database
+            // SQL to add a new aircraft to the tracked database
         }
 
         private void btnNewPilot_Click(object sender, EventArgs e)
@@ -92,5 +82,18 @@ namespace NEAProjectActual
             FormAddPilot formAddPilot = new FormAddPilot();
             formAddPilot.Show();
         }
+
+        private void listViewPlanes_ItemActivate(object? sender, EventArgs e)
+        {
+            if (lstTrackedAircraft.SelectedItems.Count > 0)
+            {
+                var selectedItem = lstTrackedAircraft.SelectedItems[0];
+                string planeId = selectedItem.SubItems[0].Text;
+
+                var planeDetailsForm = new FormAircraftDetails(planeId);
+                planeDetailsForm.Show();
+            }
+        }
+
     }
 }

@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -148,5 +149,6 @@
         private ColumnHeader registration;
         private ColumnHeader type;
         private ColumnHeader airline;
+        
     }
 }
