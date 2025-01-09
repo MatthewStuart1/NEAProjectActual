@@ -87,13 +87,17 @@ namespace NEAProjectActual
         {
             if (lstTrackedAircraft.SelectedItems.Count > 0)
             {
-                var selectedItem = lstTrackedAircraft.SelectedItems[0];
-                string planeId = selectedItem.SubItems[0].Text;
+                var item = lstTrackedAircraft.SelectedItems[0];
+                string planeId = item.SubItems[0].Text;
 
                 var planeDetailsForm = new FormAircraftDetails(planeId);
                 planeDetailsForm.Show();
             }
         }
 
+        public void DurationCalculator(DateTime Departure, DateTime Arrival)
+        {
+
+        }
     }
 }

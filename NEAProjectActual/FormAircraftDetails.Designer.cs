@@ -43,9 +43,10 @@
             // lblPlaneId
             // 
             lblPlaneId.AutoSize = true;
+            lblPlaneId.Font = new Font("Dubai", 30F, FontStyle.Bold);
             lblPlaneId.Location = new Point(12, 12);
             lblPlaneId.Name = "lblPlaneId";
-            lblPlaneId.Size = new Size(0, 15);
+            lblPlaneId.Size = new Size(0, 67);
             lblPlaneId.TabIndex = 1;
             // 
             // FormAircraftDetails
