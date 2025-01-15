@@ -30,10 +30,18 @@
         {
             lstFlightDetails = new ListView();
             lblPlaneId = new Label();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
+            columnHeader7 = new ColumnHeader();
             SuspendLayout();
             // 
             // lstFlightDetails
             // 
+            lstFlightDetails.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
             lstFlightDetails.Location = new Point(319, 12);
             lstFlightDetails.Name = "lstFlightDetails";
             lstFlightDetails.Size = new Size(469, 426);
@@ -48,6 +56,34 @@
             lblPlaneId.Name = "lblPlaneId";
             lblPlaneId.Size = new Size(0, 67);
             lblPlaneId.TabIndex = 1;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "FlightID";
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "PilotID";
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Departure Airport:";
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Arrival Airport:";
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Departure Time:";
+            // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Arrival Time";
+            // 
+            // columnHeader7
+            // 
+            columnHeader7.Text = "Flight Time:";
             // 
             // FormAircraftDetails
             // 
@@ -65,5 +101,12 @@
         #endregion
         private ListView lstFlightDetails;
         private Label lblPlaneId;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
     }
 }

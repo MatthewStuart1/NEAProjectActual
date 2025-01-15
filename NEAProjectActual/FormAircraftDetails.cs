@@ -20,19 +20,19 @@ namespace NEAProjectActual
             InitializeComponent();
             _planeId = planeId;
 
-            LoadAircraftDetails();
+            LoadAircraftDetails(planeId);
         }
 
-        private void LoadAircraftDetails()
+        private void LoadAircraftDetails(string planeId)
         {
+                clsDBConnector dbConnector = new clsDBConnector();
             try
             {
                 lblPlaneId.Text = _planeId;
-                clsDBConnector dbConnector = new clsDBConnector();
                 OleDbDataReader dr;
                 string sqlStr;
                 dbConnector.Connect();
-                sqlStr = "SELECT icaoAddress, registration, type, airline FROM Aircraft";
+                sqlStr = $"SELECT FlightID, PilotID, Departing, DepartureTime, Arriving, Arrival Time FROM Aircraft WHERE AircraftID = {planeId}";
                 dr = dbConnector.DoSQL(sqlStr);
                 lstFlightDetails.Items.Clear();
                 while (dr.Read())
@@ -45,13 +45,13 @@ namespace NEAProjectActual
                 }
                 dbConnector.Close();
             }
-            catch (Exception except)
+            catch (Exception e)
             {
-                MessageBox.Show("Error: " + except.Message);
+                MessageBox.Show("Error: " + e.Message);
             }
             finally
             {
-                conn.Close();
+               dbConnector.Close();
             }
             
         }
