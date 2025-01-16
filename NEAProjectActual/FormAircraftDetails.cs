@@ -25,22 +25,33 @@ namespace NEAProjectActual
 
         private void LoadAircraftDetails(string planeId)
         {
-                clsDBConnector dbConnector = new clsDBConnector();
+            clsDBConnector dbConnector = new clsDBConnector();
             try
             {
                 lblPlaneId.Text = _planeId;
                 OleDbDataReader dr;
                 string sqlStr;
                 dbConnector.Connect();
-                sqlStr = $"SELECT FlightID, PilotID, Departing, DepartureTime, Arriving, Arrival Time FROM Aircraft WHERE AircraftID = {planeId}";
+                sqlStr = $"SELECT FlightID, PilotID, Departing, DepartureTime, Arriving, ArrivalTime FROM Aircraft WHERE AircraftID = {planeId}";
                 dr = dbConnector.DoSQL(sqlStr);
                 lstFlightDetails.Items.Clear();
                 while (dr.Read())
                 {
+                    DateTime arrival = new DateTime();
+                    DateTime departure = new DateTime();
+                    arrival = Convert.ToDateTime(dr[6].ToString());
+                    departure = Convert.ToDateTime(dr[4].ToString());
+
+                    TimeSpan flightTime = arrival - departure;
+
                     var item = new ListViewItem(dr[0].ToString());
                     item.SubItems.Add(dr[1].ToString());
                     item.SubItems.Add(dr[2].ToString());
                     item.SubItems.Add(dr[3].ToString());
+                    item.SubItems.Add(dr[4].ToString());
+                    item.SubItems.Add(dr[5].ToString());
+                    item.SubItems.Add(dr[6].ToString());
+                    item.SubItems.Add(dr[flightTime.].ToString());
                     lstFlightDetails.Items.Add(item);
                 }
                 dbConnector.Close();
@@ -51,10 +62,12 @@ namespace NEAProjectActual
             }
             finally
             {
-               dbConnector.Close();
+                dbConnector.Close();
             }
-            
+
         }
+
+
     }
 
 }

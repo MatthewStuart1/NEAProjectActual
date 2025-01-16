@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             lstFlightDetails = new ListView();
-            lblPlaneId = new Label();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
@@ -37,25 +36,18 @@
             columnHeader5 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
+            lblPlaneId = new Label();
             SuspendLayout();
             // 
             // lstFlightDetails
             // 
             lstFlightDetails.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
-            lstFlightDetails.Location = new Point(319, 12);
+            lstFlightDetails.Location = new Point(338, 12);
             lstFlightDetails.Name = "lstFlightDetails";
-            lstFlightDetails.Size = new Size(469, 426);
+            lstFlightDetails.Size = new Size(674, 453);
             lstFlightDetails.TabIndex = 0;
             lstFlightDetails.UseCompatibleStateImageBehavior = false;
-            // 
-            // lblPlaneId
-            // 
-            lblPlaneId.AutoSize = true;
-            lblPlaneId.Font = new Font("Dubai", 30F, FontStyle.Bold);
-            lblPlaneId.Location = new Point(12, 12);
-            lblPlaneId.Name = "lblPlaneId";
-            lblPlaneId.Size = new Size(0, 67);
-            lblPlaneId.TabIndex = 1;
+            lstFlightDetails.View = View.Details;
             // 
             // columnHeader1
             // 
@@ -85,11 +77,20 @@
             // 
             columnHeader7.Text = "Flight Time:";
             // 
+            // lblPlaneId
+            // 
+            lblPlaneId.AutoSize = true;
+            lblPlaneId.Font = new Font("Dubai", 30F, FontStyle.Bold);
+            lblPlaneId.Location = new Point(12, 12);
+            lblPlaneId.Name = "lblPlaneId";
+            lblPlaneId.Size = new Size(0, 67);
+            lblPlaneId.TabIndex = 1;
+            // 
             // FormAircraftDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1024, 477);
             Controls.Add(lblPlaneId);
             Controls.Add(lstFlightDetails);
             Name = "FormAircraftDetails";
