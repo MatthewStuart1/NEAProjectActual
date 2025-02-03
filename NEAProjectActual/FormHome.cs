@@ -20,7 +20,7 @@ namespace NEAProjectActual
                 OleDbDataReader dr;
                 string sqlStr;
                 dbConnector.Connect();
-                sqlStr = "SELECT icaoAddress, registration, type, airline FROM Aircraft";
+                sqlStr = "SELECT registration, icaoAddress, type, airline FROM Aircraft";
                 dr = dbConnector.DoSQL(sqlStr);
                 lstTrackedAircraft.Items.Clear();
                 while (dr.Read())

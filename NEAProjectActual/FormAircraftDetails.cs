@@ -17,8 +17,8 @@ namespace NEAProjectActual
 
         public FormAircraftDetails(string planeId)
         {
-            InitializeComponent();
             _planeId = planeId;
+            InitializeComponent();
 
             LoadAircraftDetails(planeId);
         }
@@ -32,7 +32,7 @@ namespace NEAProjectActual
                 OleDbDataReader dr;
                 string sqlStr;
                 dbConnector.Connect();
-                sqlStr = $"SELECT FlightID, PilotID, Departing, DepartureTime, Arriving, ArrivalTime FROM Aircraft WHERE AircraftID = {planeId}";
+                sqlStr = $"SELECT flightID, PilotID, Departing, DepartureTime, Arriving, ArrivalTime FROM Flight WHERE AircraftID = {planeId}";
                 dr = dbConnector.DoSQL(sqlStr);
                 lstFlightDetails.Items.Clear();
                 while (dr.Read())
@@ -43,7 +43,8 @@ namespace NEAProjectActual
                     departure = Convert.ToDateTime(dr[4].ToString());
 
                     TimeSpan flightTime = arrival - departure;
-
+                    string TimeSpan_ = flightTime.ToString();
+                   
                     var item = new ListViewItem(dr[0].ToString());
                     item.SubItems.Add(dr[1].ToString());
                     item.SubItems.Add(dr[2].ToString());
@@ -51,7 +52,7 @@ namespace NEAProjectActual
                     item.SubItems.Add(dr[4].ToString());
                     item.SubItems.Add(dr[5].ToString());
                     item.SubItems.Add(dr[6].ToString());
-                    item.SubItems.Add(dr[flightTime.].ToString());
+                    item.SubItems.Add(dr[TimeSpan_].ToString());
                     lstFlightDetails.Items.Add(item);
                 }
                 dbConnector.Close();

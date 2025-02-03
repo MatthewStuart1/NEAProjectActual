@@ -88,7 +88,7 @@
             // 
             // lstTrackedAircraft
             // 
-            lstTrackedAircraft.Columns.AddRange(new ColumnHeader[] { icaoAddress, registration, type, airline });
+            lstTrackedAircraft.Columns.AddRange(new ColumnHeader[] { registration, icaoAddress, type, airline });
             lstTrackedAircraft.Location = new Point(699, 12);
             lstTrackedAircraft.Name = "lstTrackedAircraft";
             lstTrackedAircraft.Size = new Size(392, 619);
@@ -145,8 +145,8 @@
         private Button btnAddBulk;
         private ListView lstTrackedAircraft;
         private Button btnNewPilot;
-        private ColumnHeader icaoAddress;
         private ColumnHeader registration;
+        private ColumnHeader icaoAddress;
         private ColumnHeader type;
         private ColumnHeader airline;
         
